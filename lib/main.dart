@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_flutter/utils.dart';
 
 void main() => runApp(const MyApp());
 
@@ -7,6 +8,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    printDebug(View.of(context).platformDispatcher.defaultRouteName);
     return MaterialApp(
       theme: ThemeData(primarySwatch: Colors.blue,),
       initialRoute: '/',
@@ -38,6 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
           tabs: choices.map((Choice choice) {
             return Tab(text: choice.title, icon: Icon(choice.icon),);
           }).toList(),
+          onTap: (index) {
+            printDebug('tap $index');
+          },
         ),
       ),
       body: TabBarView(
